@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	. "gitlab.com/m8127/produtos/automation/dns-checker/checker"
+	. "github.com/moniquelive/dns-checker/checker"
 )
 
 func TestRight(t *testing.T) {
@@ -16,7 +16,7 @@ func TestRight(t *testing.T) {
 	assert.True(t, result)
 }
 
-func TestWrong(t *testing.T) {
+func TestWrongs(t *testing.T) {
 	for _, tc := range []struct {
 		name,
 		original,
@@ -24,9 +24,9 @@ func TestWrong(t *testing.T) {
 		errMsg string
 		status int
 	}{
-		{"Wrong status code", "https://google.com", "https://www.google.com/", "status code: 301", 404},
-		{"Wrong target location", "https://google.com", "https://www.akadseguros.com.br/", "destination: https://www.google.com/", 301},
-		{"Invalid source url", "not-an-url", "https://www.akadseguros.com.br/", `Get "not-an-url": unsupported protocol scheme ""`, 301},
+		{"Wrong status code", "https://google.com", "https://www.google.com/", "wrong status code: 301", 404},
+		{"Wrong target location", "https://google.com", "https://www.google.com.br/", "wrong destination: https://www.google.com/", 301},
+		{"Invalid source url", "not-an-url", "https://www.google.com.br/", `Get "not-an-url": unsupported protocol scheme ""`, 301},
 		{"Invalid target url", "https://google.com", ":not-an-url", `parse ":not-an-url": missing protocol scheme`, 301},
 		{"Not a redirect", "https://www.google.com/", "https://www.google.com/", "http: no Location header in response", 200},
 	} {

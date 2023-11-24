@@ -38,7 +38,7 @@ func Check(source string, target string, statusCode int) (bool, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != statusCode {
-		return false, &StatusCodeError{StatusCode: resp.StatusCode, Err: errors.New("status code")}
+		return false, &StatusCodeError{StatusCode: resp.StatusCode, Err: errors.New("wrong status code")}
 	}
 	location, err := resp.Location()
 	if err != nil {
@@ -49,7 +49,7 @@ func Check(source string, target string, statusCode int) (bool, error) {
 		return false, err
 	}
 	if !reflect.DeepEqual(location, dest) {
-		return false, &DestinationError{Destination: location, Err: errors.New("destination")}
+		return false, &DestinationError{Destination: location, Err: errors.New("wrong destination")}
 	}
 	return true, nil
 }
