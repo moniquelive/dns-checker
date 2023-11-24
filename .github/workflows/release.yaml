@@ -26,7 +26,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           goos: ${{ matrix.goos }}
           goarch: ${{ matrix.goarch }}
-          goversion: "https://go.dev/dl/go1.21.4.linux-amd64.tar.gz"
-          project_path: "./cmd/dns-checker"
-          binary_name: "dns-checker"
           extra_files: LICENSE README.md
